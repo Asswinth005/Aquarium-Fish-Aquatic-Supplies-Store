@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, viewport-fit=cover">
+    <title>Sign In · DeepBlue Aquatics</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <!-- Tailwind CSS -->
+    <script src="tailwind.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'deep-teal': '#0A4C5C',
+                        'coral-pink': '#FF7F7F',
+                        'sand-beige': '#F4E9D8',
+                        'seafoam': '#A8D5D9',
+                        'ocean-blue': '#006A8A',
+                        'driftwood': '#9C7A5E',
+                        'reef-gold': '#E6B85C',
+                    },
+                    fontFamily: {
+                        'serif': ['Cormorant Garamond', 'Georgia', 'serif'],
+                        'heading': ['Playfair Display', 'serif'],
+                        'body': ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+                        'sans': ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.2s ease-out',
+                        'float': 'float 6s ease-in-out infinite'
+                    },
+                    keyframes: {
+                        fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+                        float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-6px)' } }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Great+Vibes&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ----- RESPONSIVE & NO SCROLL FLEX LAYOUT ----- */
+        html {
+            min-height: 100%;
+            height: 100%;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: #F4F8FA;
+            color: #1A2E35;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            padding: 1.5rem 1rem;
+            margin: 0;
+            overflow-y: auto;
+        }
+
+        .dark body {
+            background-color: #0B1A1E;
+            color: #D4E9ED;
+        }
+
+        /* toggle buttons — positioned top-right */
+        .theme-toggle-wrapper {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 1000;
+            display: flex;
+            gap: 8px;
+        }
+
+        /* Toggle Buttons */
+        .toggle-btn {
+            width: 38px; height: 38px;
+            border-radius: 50%;
+            background: #EBF5F8;
+            border: 1.5px solid #006A8A;
+            color: #006A8A;
+            font-size: 1rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 106, 138, 0.12);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .dark .toggle-btn {
+            background: #152E35;
+            border-color: #7FC1C9;
+            color: #7FC1C9;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+        }
+        .toggle-btn:hover {
+            background: #006A8A;
+            color: #FFFFFF;
+            border-color: #006A8A;
+            transform: scale(1.08) translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 106, 138, 0.3);
+        }
+        .dark .toggle-btn:hover {
+            background: #7FC1C9;
+            color: #0B1A1E;
+            border-color: #7FC1C9;
+        }
+
+        /* LOGIN CARD — aquatic theme */
+        .login-card {
+            background: white;
+            border-radius: 32px;
+            padding: 2rem 2rem 1.8rem;
+            box-shadow: 0 20px 45px rgba(0, 106, 138, 0.10);
+            border: 1px solid rgba(0, 106, 138, 0.12);
+            width: 100%;
+            max-width: 440px;
+            margin: 0 auto;
+        }
+
+        .dark .login-card {
+            background: #13262B;
+            border-color: #2C525A;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        /* divider */
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 1.5rem 0 1rem;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #A8D5D9;
+        }
+
+        .dark .divider::before,
+        .dark .divider::after {
+            border-bottom-color: #2C525A;
+        }
+
+        .divider span {
+            font-size: 0.75rem;
+            padding: 0 1rem;
+            color: #006A8A;
+            font-weight: 600;
+            text-transform: lowercase;
+            letter-spacing: 0.05em;
+        }
+
+        .dark .divider span {
+            color: #7FC1C9;
+        }
+
+        /* input — aquatic style */
+        .login-input {
+            width: 100%;
+            padding: 0.85rem 1.2rem 0.85rem 3rem;
+            border-radius: 50px;
+            border: 1.5px solid #A8D5D9;
+            background: white;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            color: #1A2E35;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .dark .login-input {
+            background: #1A3038;
+            border-color: rgba(127, 193, 201, 0.3);
+            color: #D4E9ED;
+        }
+
+        .login-input:focus {
+            outline: none;
+            border-color: #006A8A;
+            box-shadow: 0 0 0 3px rgba(0, 106, 138, 0.15);
+        }
+
+        .dark .login-input:focus {
+            border-color: #7FC1C9;
+            box-shadow: 0 0 0 3px rgba(127, 193, 201, 0.2);
+        }
+
+        .login-input::placeholder {
+            color: #8FACB4;
+        }
+
+        .dark .login-input::placeholder {
+            color: #5A7A82;
+        }
+
+        /* password wrapper for eye icon */
+        .password-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .password-wrapper .login-input {
+            padding-right: 3rem;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #006A8A;
+            font-size: 1rem;
+            transition: color 0.2s;
+            background: transparent;
+            border: none;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dark .toggle-password {
+            color: #7FC1C9;
+        }
+
+        .toggle-password:hover {
+            color: #E6B85C;
+        }
+
+        .dark .toggle-password:hover {
+            color: #E6B85C;
+        }
+
+        [dir="rtl"] .toggle-password {
+            right: auto;
+            left: 1rem;
+        }
+
+        [dir="rtl"] .password-wrapper .login-input {
+            padding-right: 1.2rem;
+            padding-left: 3rem;
+        }
+
+        [dir="rtl"] .input-icon {
+            left: auto;
+            right: 1.1rem;
+        }
+
+        /* aquatic button */
+        .aquatic-btn {
+            background: #006A8A;
+            color: white;
+            font-weight: 600;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            font-family: 'Libre Baskerville', serif;
+            letter-spacing: 0.5px;
+        }
+
+        .dark .aquatic-btn {
+            background: #7FC1C9;
+            color: #0B1A1E;
+        }
+
+        .aquatic-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 106, 138, 0.35);
+        }
+
+        .dark .aquatic-btn:hover {
+            box-shadow: 0 8px 20px rgba(127, 193, 201, 0.35);
+        }
+
+        /* social login buttons */
+        .social-btn-row {
+            display: flex;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .social-btn {
+            flex: 1;
+            padding: 0.8rem 0.5rem;
+            border-radius: 50px;
+            border: 1.5px solid #A8D5D9;
+            background: white;
+            color: #1A2E35;
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s ease;
+            gap: 0.5rem;
+            white-space: nowrap;
+            cursor: pointer;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .dark .social-btn {
+            background: #1A3038;
+            border-color: #2C525A;
+            color: #D4E9ED;
+        }
+
+        .social-btn:hover {
+            background: #EAF5F7;
+            border-color: #006A8A;
+            transform: translateY(-2px);
+        }
+
+        .dark .social-btn:hover {
+            background: #1F3E46;
+            border-color: #7FC1C9;
+        }
+
+        .social-btn i {
+            font-size: 1.1rem;
+            color: #006A8A;
+        }
+
+        .dark .social-btn i {
+            color: #7FC1C9;
+        }
+
+        /* logo spin */
+        .logo-icon {
+            transition: transform 0.3s ease;
+        }
+
+        a:hover .logo-icon {
+            transform: rotate(12deg) scale(1.05);
+        }
+
+        /* RTL adjustments */
+        [dir="rtl"] .login-input {
+            padding: 0.85rem 3rem 0.85rem 1.2rem;
+        }
+
+        [dir="rtl"] .input-icon {
+            left: auto;
+            right: 1.1rem;
+        }
+
+        [dir="rtl"] .theme-toggle-wrapper {
+            right: auto;
+            left: 20px;
+        }
+
+        /* hidden utility */
+        .hidden {
+            display: none;
+        }
+
+        /* container */
+        .container-tight {
+            max-width: 480px;
+            width: 100%;
+            padding: 0 1.5rem;
+        }
+
+        /* center logo container */
+        .logo-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        /* welcome title styles */
+        .welcome-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1A2E35;
+            margin-top: 1rem;
+            margin-bottom: 0.25rem;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .dark .welcome-title {
+            color: #D4E9ED;
+        }
+
+        .welcome-subtitle {
+            font-size: 0.9rem;
+            color: rgba(26, 46, 53, 0.7);
+            text-align: center;
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+        }
+
+        .dark .welcome-subtitle {
+            color: #8FACB4;
+        }
+
+        /* heritage line - renamed to aquatic line */
+        .aquatic-line {
+            width: 50px;
+            height: 2px;
+            background: #E6B85C;
+            margin: 0.5rem auto;
+        }
+
+        /* mobile friendly */
+        @media (max-width: 380px) {
+            .social-btn-row {
+                flex-direction: column;
+            }
+
+            .login-card {
+                padding: 1.8rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .theme-toggle-wrapper {
+                top: 12px;
+                right: 12px;
+            }
+
+            [dir="rtl"] .theme-toggle-wrapper {
+                left: 12px;
+            }
+        }
+
+        /* Nest Hub / Landscape Short Screen Optimizations */
+        @media (max-height: 680px) {
+            body {
+                padding: 0.75rem 0.5rem;
+            }
+            .container-tight {
+                max-width: 410px;
+            }
+            .login-card {
+                padding: 1.1rem 1.4rem;
+                border-radius: 24px;
+            }
+            .logo-center {
+                margin-bottom: 0.5rem;
+            }
+            .logo-center .w-10 {
+                width: 2.25rem;
+                height: 2.25rem;
+            }
+            .welcome-title {
+                font-size: 1.25rem;
+                margin-top: 0.35rem;
+                margin-bottom: 0.15rem;
+            }
+            .welcome-subtitle {
+                font-size: 0.8rem;
+                margin-bottom: 0.2rem;
+            }
+            .aquatic-line {
+                margin: 0.3rem auto;
+            }
+            .login-input {
+                padding-top: 0.5rem;
+                padding-bottom: 0.5rem;
+                font-size: 0.85rem;
+            }
+            .aquatic-btn {
+                padding-top: 0.55rem;
+                padding-bottom: 0.55rem;
+                font-size: 0.9rem;
+            }
+            .divider {
+                margin: 0.65rem 0 0.4rem;
+            }
+            .social-btn {
+                padding: 0.5rem 0.4rem;
+                font-size: 0.8rem;
+            }
+            .mt-6 {
+                margin-top: 0.65rem !important;
+            }
+        }
+
+        /* checkbox styling */
+        .aquatic-checkbox {
+            accent-color: #006A8A;
+        }
+
+        .dark .aquatic-checkbox {
+            accent-color: #7FC1C9;
+        }
+
+        .link-aqua {
+            color: #006A8A;
+            transition: color 0.2s;
+        }
+
+        .dark .link-aqua {
+            color: #7FC1C9;
+        }
+
+        .link-aqua:hover {
+            color: #E6B85C;
+            text-decoration: underline;
+        }
+
+        .dark .link-aqua:hover {
+            color: #E6B85C;
+        }
+
+        .text-muted-aqua {
+            color: rgba(26, 46, 53, 0.6);
+        }
+
+        .dark .text-muted-aqua {
+            color: #8FACB4;
+        }
+
+        .border-dash-aqua {
+            border-color: rgba(168, 213, 217, 0.3);
+        }
+
+        .dark .border-dash-aqua {
+            border-color: rgba(44, 82, 90, 0.4);
+        }
+    </style>
+</head>
+
+<body class="bg-[#F4F8FA] dark:bg-[#0B1A1E]">
+
+    <!-- ===== THEME TOGGLES - TOP-RIGHT ===== -->
+    <div class="theme-toggle-wrapper">
+        <button id="theme-toggle" class="toggle-btn" title="Dark / Light">
+            <i class="fas fa-moon"></i>
+        </button>
+        <button id="rtl-toggle" class="toggle-btn" title="RTL / LTR">
+            ⇄
+        </button>
+    </div>
+
+    <!-- ===== LOGIN CARD ===== -->
+    <div class="container-tight">
+
+        <!-- LOGIN CARD -->
+        <div class="login-card animate-fade-in">
+
+            <!-- ===== LOGO - CENTERED ===== -->
+            <div class="logo-center">
+                <a href="index.html" class="flex items-center space-x-3 group">
+                    <div class="w-10 h-10 bg-[#006A8A] flex items-center justify-center rounded-full">
+                        <i class="fas fa-fish text-white text-xl logo-icon"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-heading font-semibold text-[#006A8A] dark:text-[#7FC1C9]">DeepBlue</span>
+                    </div>
+                </a>
+                <h1 class="welcome-title">Dive Back In</h1>
+                <p class="welcome-subtitle">Sign in to explore your underwater world</p>
+                <div class="aquatic-line"></div>
+            </div>
+
+            <!-- ===== LOGIN FORM ===== -->
+            <form class="space-y-5" action="index.html" method="GET">
+
+                <!-- email field -->
+                <div class="relative">
+                    <span
+                        class="absolute inset-y-0 left-0 flex items-center pl-4 text-ocean-blue dark:text-seafoam input-icon">
+                        <i class="fas fa-envelope w-5 text-sm"></i>
+                    </span>
+                    <input type="email" name="email" placeholder="Email address" required
+                        class="login-input text-sm md:text-base">
+                </div>
+
+                <!-- password field with eye icon -->
+                <div class="password-wrapper">
+                    <span
+                        class="absolute inset-y-0 left-0 flex items-center pl-4 text-ocean-blue dark:text-seafoam input-icon">
+                        <i class="fas fa-lock w-5 text-sm"></i>
+                    </span>
+                    <input type="password" id="login-password" name="password" placeholder="Password" required
+                        class="login-input text-sm md:text-base">
+                    <button type="button" class="toggle-password" data-target="login-password"
+                        aria-label="Show password">
+                        <i class="far fa-eye-slash"></i>
+                    </button>
+                </div>
+
+                <!-- remember + forgot -->
+                <div class="flex items-center justify-between text-xs md:text-sm">
+                    <label
+                        class="flex items-center space-x-2 rtl:space-x-reverse cursor-pointer text-deep-teal dark:text-sand-beige/80">
+                        <input type="checkbox" checked
+                            class="aquatic-checkbox rounded border-seafoam dark:border-gray-600 text-ocean-blue focus:ring-ocean-blue/30 dark:bg-gray-700 w-4 h-4">
+                        <span class="ml-1 rtl:mr-1">Remember me</span>
+                    </label>
+                    <a href="#"
+                        class="link-aqua font-medium transition">
+                        Forgot password?
+                    </a>
+                </div>
+
+                <!-- LOGIN BUTTON -->
+                <button type="submit" class="aquatic-btn mt-3">
+                    <i class="fas fa-water mr-2 rtl:ml-2 rtl:mr-0"></i>
+                    Sign In
+                </button>
+
+                <!-- divider -->
+                <div class="divider">
+                    <span>or continue with</span>
+                </div>
+            </form>
+
+            <!-- ===== SOCIAL LOGIN BUTTONS ===== -->
+            <div class="mt-6">
+                <div class="grid grid-cols-2 gap-3">
+                    <button class="social-btn group w-full flex items-center justify-center gap-2 py-3 px-2 text-sm"
+                        onclick="window.location.href='index.html';">
+                        <i class="fab fa-google text-base"></i>
+                        <span>Google</span>
+                    </button>
+
+                    <button class="social-btn group w-full flex items-center justify-center gap-2 py-3 px-2 text-sm"
+                        onclick="window.location.href='index.html';">
+                        <i class="fab fa-apple text-base"></i>
+                        <span>Apple</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- ===== "NOT A MEMBER? SIGN UP" LINK ===== -->
+            <div class="mt-6 text-center pt-4 border-t border-dashed border-dash-aqua">
+                <span class="text-sm text-muted-aqua">Not a member?</span>
+                <a href="signup.html"
+                    class="text-sm font-semibold link-aqua transition ml-1 rtl:mr-1">
+                    Join DeepBlue
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ===== DARK / LIGHT + RTL TOGGLE SCRIPT + EYE ICON FUNCTIONALITY ===== -->
+    <script>
+        (function() {
+            // ---------- THEME ----------
+            const themeToggle = document.getElementById('theme-toggle');
+
+            function setTheme(isDark) {
+                if (isDark) {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+
+                const icon = themeToggle?.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-sun', 'fa-moon');
+                    icon.classList.add(isDark ? 'fa-moon' : 'fa-sun');
+                }
+
+                if (isDark) {
+                    themeToggle?.classList.add('active');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    themeToggle?.classList.remove('active');
+                    localStorage.setItem('theme', 'light');
+                }
+            }
+
+            // Check for saved theme or system preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                setTheme(true);
+            } else if (savedTheme === 'light') {
+                setTheme(false);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                setTheme(true);
+            } else {
+                setTheme(false);
+            }
+
+            if (themeToggle) {
+                themeToggle.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    setTheme(!document.documentElement.classList.contains('dark'));
+                });
+            }
+
+            // ---------- RTL ----------
+            const rtlBtn = document.getElementById('rtl-toggle');
+
+            function setRTL(isRTL) {
+                if (isRTL) {
+                    document.documentElement.dir = 'rtl';
+                    document.documentElement.lang = 'ar';
+                    rtlBtn?.classList.add('active');
+                    localStorage.setItem('dir', 'rtl');
+                } else {
+                    document.documentElement.dir = 'ltr';
+                    document.documentElement.lang = 'en';
+                    rtlBtn?.classList.remove('active');
+                    localStorage.setItem('dir', 'ltr');
+                }
+            }
+            const savedDir = localStorage.getItem('dir');
+            savedDir === 'rtl' ? setRTL(true) : setRTL(false);
+
+            if (rtlBtn) {
+                rtlBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    setRTL(document.documentElement.dir !== 'rtl');
+                });
+            }
+
+            // ---------- EYE ICON TOGGLE PASSWORD VISIBILITY ----------
+            const toggleButtons = document.querySelectorAll('.toggle-password');
+            toggleButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('data-target');
+                    const passwordInput = document.getElementById(targetId);
+                    if (passwordInput) {
+                        const type = passwordInput.getAttribute('type') === 'password' ? 'text' :
+                        'password';
+                        passwordInput.setAttribute('type', type);
+                        const icon = this.querySelector('i');
+                        if (icon) {
+                            if (type === 'text') {
+                                icon.classList.remove('fa-eye-slash');
+                                icon.classList.add('fa-eye');
+                            } else {
+                                icon.classList.remove('fa-eye');
+                                icon.classList.add('fa-eye-slash');
+                            }
+                        }
+                    }
+                });
+            });
+
+            // forgot password demo
+            document.querySelectorAll('a[href="#"]').forEach(link => {
+                if (link.textContent.includes('Forgot') || link.innerHTML.includes('Forgot')) {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        alert('🔐 A password reset link will be sent to your email');
+                    });
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
