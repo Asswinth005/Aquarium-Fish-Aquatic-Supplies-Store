@@ -469,18 +469,62 @@
 
             <div class="grid lg:grid-cols-12 gap-8 items-center">
                 <!-- Controls -->
-                <div class="lg:col-span-5 bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20">
-                    <label for="tank-size-select" class="block text-sm font-semibold text-sand-beige mb-3 uppercase tracking-wider">Select Tank Size (Gallons):</label>
-                    <select id="tank-size-select" class="w-full bg-[#091D23] text-white border border-reef-gold/40 rounded-xl px-4 py-3 text-lg font-semibold focus:outline-none focus:border-reef-gold cursor-pointer" onchange="calculateEquipment()">
-                        <option value="10">10 Gallons (Nano Community / Shrimp)</option>
-                        <option value="20">20 Gallons High / Long (Standard Beginner)</option>
-                        <option value="29">29 Gallons (Medium Community)</option>
-                        <option value="55" selected>55 Gallons (Classic Cichlid / Planted)</option>
-                        <option value="75">75 Gallons (Large Aquascape)</option>
-                        <option value="120">120 Gallons (Monster / Marine Reef)</option>
-                    </select>
+                <div class="lg:col-span-5 bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 relative z-30">
+                    <label class="block text-sm font-semibold text-sand-beige mb-3 uppercase tracking-wider">Select Tank Size (Gallons):</label>
+                    
+                    <!-- Custom Select Component -->
+                    <div class="relative">
+                        <button type="button" id="tank-dropdown-btn" onclick="toggleTankDropdown(event)" class="w-full bg-[#081B21] text-white border border-reef-gold/40 rounded-xl px-4 py-3.5 text-left font-semibold flex items-center justify-between shadow-inner focus:outline-none focus:border-reef-gold cursor-pointer transition-all">
+                            <span id="selected-tank-text" class="font-sans-num font-bold text-base flex items-center gap-2">
+                                <i class="fas fa-water text-reef-gold"></i>
+                                <span>55 Gallons (Classic Cichlid / Planted)</span>
+                            </span>
+                            <i class="fas fa-chevron-down text-reef-gold text-sm transition-transform duration-300" id="dropdown-arrow"></i>
+                        </button>
 
-                    <div class="mt-6 flex flex-col gap-3 text-xs text-sand-beige/80">
+                        <!-- Custom Dropdown Menu -->
+                        <div id="tank-dropdown-menu" class="hidden absolute top-full left-0 right-0 mt-2 bg-[#091D23] border border-reef-gold/40 rounded-2xl shadow-2xl z-50 overflow-hidden backdrop-blur-xl divide-y divide-white/5">
+                            <div onclick="selectTankOption(10, '10 Gallons (Nano Community / Shrimp)', this)" class="tank-opt-item px-5 py-3.5 hover:bg-reef-gold/20 cursor-pointer flex items-center justify-between text-sm font-semibold transition text-white/90">
+                                <span class="font-sans-num">10 Gallons (Nano Community / Shrimp)</span>
+                                <i class="fas fa-check text-reef-gold opacity-0 check-icon"></i>
+                            </div>
+                            <div onclick="selectTankOption(20, '20 Gallons High / Long (Standard Beginner)', this)" class="tank-opt-item px-5 py-3.5 hover:bg-reef-gold/20 cursor-pointer flex items-center justify-between text-sm font-semibold transition text-white/90">
+                                <span class="font-sans-num">20 Gallons High / Long (Standard Beginner)</span>
+                                <i class="fas fa-check text-reef-gold opacity-0 check-icon"></i>
+                            </div>
+                            <div onclick="selectTankOption(29, '29 Gallons (Medium Community)', this)" class="tank-opt-item px-5 py-3.5 hover:bg-reef-gold/20 cursor-pointer flex items-center justify-between text-sm font-semibold transition text-white/90">
+                                <span class="font-sans-num">29 Gallons (Medium Community)</span>
+                                <i class="fas fa-check text-reef-gold opacity-0 check-icon"></i>
+                            </div>
+                            <div onclick="selectTankOption(55, '55 Gallons (Classic Cichlid / Planted)', this)" class="tank-opt-item px-5 py-3.5 bg-reef-gold/20 cursor-pointer flex items-center justify-between text-sm font-semibold transition text-reef-gold active-opt">
+                                <span class="font-sans-num">55 Gallons (Classic Cichlid / Planted)</span>
+                                <i class="fas fa-check text-reef-gold opacity-100 check-icon"></i>
+                            </div>
+                            <div onclick="selectTankOption(75, '75 Gallons (Large Aquascape)', this)" class="tank-opt-item px-5 py-3.5 hover:bg-reef-gold/20 cursor-pointer flex items-center justify-between text-sm font-semibold transition text-white/90">
+                                <span class="font-sans-num">75 Gallons (Large Aquascape)</span>
+                                <i class="fas fa-check text-reef-gold opacity-0 check-icon"></i>
+                            </div>
+                            <div onclick="selectTankOption(120, '120 Gallons (Monster / Marine Reef)', this)" class="tank-opt-item px-5 py-3.5 hover:bg-reef-gold/20 cursor-pointer flex items-center justify-between text-sm font-semibold transition text-white/90">
+                                <span class="font-sans-num">120 Gallons (Monster / Marine Reef)</span>
+                                <i class="fas fa-check text-reef-gold opacity-0 check-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Preset Pills -->
+                    <div class="mt-5 pt-4 border-t border-white/10">
+                        <span class="text-xs text-sand-beige/70 uppercase tracking-wider font-semibold block mb-2">Quick Presets:</span>
+                        <div class="flex flex-wrap gap-2">
+                            <button type="button" onclick="selectTankOption(10, '10 Gallons (Nano Community / Shrimp)')" class="bg-white/10 hover:bg-reef-gold hover:text-deep-teal px-3 py-1.5 rounded-lg text-xs font-bold font-sans-num transition">10G</button>
+                            <button type="button" onclick="selectTankOption(20, '20 Gallons High / Long (Standard Beginner)')" class="bg-white/10 hover:bg-reef-gold hover:text-deep-teal px-3 py-1.5 rounded-lg text-xs font-bold font-sans-num transition">20G</button>
+                            <button type="button" onclick="selectTankOption(29, '29 Gallons (Medium Community)')" class="bg-white/10 hover:bg-reef-gold hover:text-deep-teal px-3 py-1.5 rounded-lg text-xs font-bold font-sans-num transition">29G</button>
+                            <button type="button" onclick="selectTankOption(55, '55 Gallons (Classic Cichlid / Planted)')" class="bg-reef-gold text-deep-teal px-3 py-1.5 rounded-lg text-xs font-bold font-sans-num transition">55G</button>
+                            <button type="button" onclick="selectTankOption(75, '75 Gallons (Large Aquascape)')" class="bg-white/10 hover:bg-reef-gold hover:text-deep-teal px-3 py-1.5 rounded-lg text-xs font-bold font-sans-num transition">75G</button>
+                            <button type="button" onclick="selectTankOption(120, '120 Gallons (Monster / Marine Reef)')" class="bg-white/10 hover:bg-reef-gold hover:text-deep-teal px-3 py-1.5 rounded-lg text-xs font-bold font-sans-num transition">120G</button>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 flex flex-col gap-2.5 text-xs text-sand-beige/80">
                         <div class="flex items-center gap-2"><i class="fas fa-info-circle text-reef-gold"></i> <span>Calculations based on 4x-6x hourly water turn-over standard.</span></div>
                         <div class="flex items-center gap-2"><i class="fas fa-check-circle text-reef-gold"></i> <span>Recommends 1 to 1.5 lbs of substrate per gallon for 2-inch depth.</span></div>
                     </div>
@@ -518,8 +562,47 @@
 </section>
 
 <script>
-function calculateEquipment() {
-    const size = parseInt(document.getElementById('tank-size-select').value);
+function toggleTankDropdown(e) {
+    if (e) e.stopPropagation();
+    const menu = document.getElementById('tank-dropdown-menu');
+    const arrow = document.getElementById('dropdown-arrow');
+    const isHidden = menu.classList.contains('hidden');
+    
+    if (isHidden) {
+        menu.classList.remove('hidden');
+        arrow.style.transform = 'rotate(180deg)';
+    } else {
+        menu.classList.add('hidden');
+        arrow.style.transform = 'rotate(0deg)';
+    }
+}
+
+function selectTankOption(size, labelText, el) {
+    // Update button text
+    document.getElementById('selected-tank-text').innerHTML = `<i class="fas fa-water text-reef-gold"></i><span>${labelText}</span>`;
+    
+    // Update active highlight on dropdown items
+    document.querySelectorAll('.tank-opt-item').forEach(item => {
+        item.classList.remove('bg-reef-gold/20', 'text-reef-gold', 'active-opt');
+        item.classList.add('text-white/90');
+        const check = item.querySelector('.check-icon');
+        if (check) check.classList.replace('opacity-100', 'opacity-0');
+    });
+
+    if (el) {
+        el.classList.add('bg-reef-gold/20', 'text-reef-gold', 'active-opt');
+        el.classList.remove('text-white/90');
+        const check = el.querySelector('.check-icon');
+        if (check) check.classList.replace('opacity-0', 'opacity-100');
+    }
+
+    // Close menu
+    const menu = document.getElementById('tank-dropdown-menu');
+    const arrow = document.getElementById('dropdown-arrow');
+    if (menu) menu.classList.add('hidden');
+    if (arrow) arrow.style.transform = 'rotate(0deg)';
+
+    // Recalculate
     const minGPH = size * 4;
     const maxGPH = size * 6;
     const minHeat = size * 3.5;
@@ -534,6 +617,17 @@ function calculateEquipment() {
     document.getElementById('calc-substrate').innerText = `${Math.round(minSub)} – ${Math.round(maxSub)} lbs`;
     document.getElementById('calc-light').innerText = `${minWatt} – ${maxWatt} Watts`;
 }
+
+// Close dropdown on click outside
+document.addEventListener('click', function(e) {
+    const btn = document.getElementById('tank-dropdown-btn');
+    const menu = document.getElementById('tank-dropdown-menu');
+    const arrow = document.getElementById('dropdown-arrow');
+    if (menu && !menu.classList.contains('hidden') && btn && !btn.contains(e.target) && !menu.contains(e.target)) {
+        menu.classList.add('hidden');
+        if (arrow) arrow.style.transform = 'rotate(0deg)';
+    }
+});
 </script>
 
 <!-- ========== TANKS ========== -->
