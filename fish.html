@@ -134,28 +134,43 @@
         .dark .dropdown-item:hover { background: #1F3E46; color: #7FC1C9; }
         .dropdown-item i { margin-right: 0.75rem; width: 20px; color: #006A8A; }
 
+        /* Auth Buttons - aquatic primary */
         .auth-btn {
-            padding: 0.5rem 1.6rem;
-            border-radius: 30px;
-            font-weight: 500;
-            font-family: 'Libre Baskerville', serif;
-            transition: all 0.3s;
-            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.55rem 1.6rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 0.3px;
         }
         .auth-btn.login {
-            background: transparent;
-            border: 1px solid #006A8A;
-            color: #006A8A;
-        }
-        .dark .auth-btn.login { border-color: #7FC1C9; color: #7FC1C9; }
-        .auth-btn.login:hover { background: #006A8A; color: white; }
-        .auth-btn.signup {
-            background: #006A8A;
-            color: white;
+            background: linear-gradient(135deg, #006A8A 0%, #0A4C5C 100%);
+            color: #ffffff;
             border: none;
+            box-shadow: 0 4px 14px rgba(0, 106, 138, 0.25);
         }
-        .dark .auth-btn.signup { background: #7FC1C9; color: #0B1A1E; }
-        .auth-btn.signup:hover { background: #004B63; transform: translateY(-2px); }
+        .dark .auth-btn.login {
+            background: linear-gradient(135deg, #7FC1C9 0%, #A8D5D9 100%);
+            color: #0B1A1E;
+            box-shadow: 0 4px 14px rgba(127, 193, 201, 0.3);
+        }
+        .auth-btn.login:hover {
+            background: linear-gradient(135deg, #00546E 0%, #073B47 100%);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 106, 138, 0.4);
+        }
+        .dark .auth-btn.login:hover {
+            background: linear-gradient(135deg, #9BE0E8 0%, #C4ECEF 100%);
+            color: #0B1A1E;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(127, 193, 201, 0.45);
+        }
 
         .toggle-btn {
             width: 40px; height: 40px;
@@ -371,9 +386,8 @@
                     <button id="theme-toggle" class="toggle-btn" title="Theme"><i class="fas fa-moon"></i></button>
                     <button id="rtl-toggle" class="toggle-btn" title="RTL">⇄</button>
                 </div>
-                <div class="flex items-center gap-3 ml-4">
-                    <a href="login.html" class="auth-btn login">Login</a>
-                    <a href="signup.html" class="auth-btn signup">Sign Up</a>
+                <div class="flex items-center ml-4">
+                    <a href="login.html" class="auth-btn login"><i class="fas fa-user-circle text-sm opacity-90"></i>Sign In</a>
                 </div>
             </div>
 
@@ -399,8 +413,7 @@
             <a href="care-guides.html" class="mobile-menu-item">Care Guides</a>
             <a href="contact.html" class="mobile-menu-item">Contact</a>
             <div class="flex flex-col gap-3 p-6">
-                <a href="login.html" class="mobile-auth-btn login text-center py-3 border border-ocean-blue rounded-full">Login</a>
-                <a href="signup.html" class="mobile-auth-btn signup text-center py-3 bg-ocean-blue text-white rounded-full">Sign Up</a>
+                <a href="login.html" class="mobile-auth-btn login text-center py-3 bg-ocean-blue dark:bg-[#7FC1C9] text-white dark:text-[#0B1A1E] font-semibold rounded-full shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2"><i class="fas fa-user-circle"></i>Sign In</a>
             </div>
             <div class="flex justify-center gap-3 p-6 border-t border-seafoam/20">
                 <button id="theme-toggle-mobile" class="toggle-btn"><i class="fas fa-moon"></i></button>
