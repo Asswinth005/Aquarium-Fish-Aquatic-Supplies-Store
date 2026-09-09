@@ -61,6 +61,7 @@
         p { line-height: 1.7; font-size: 1rem; font-weight: 450; letter-spacing: 0.01em; }
         h1, h2, h3, h4, .heading-font, .font-heading { font-family: 'Playfair Display', serif; font-weight: 600; }
         .serif-text { font-family: 'Cormorant Garamond', serif; }
+        .font-sans-num, .font-number, .number-font { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important; font-variant-numeric: lining-nums tabular-nums !important; }
 
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #D4E9ED; }
@@ -456,6 +457,85 @@
     </div>
 </section>
 
+<!-- ========== INTERACTIVE TANK CALCULATOR WIDGET ========== -->
+<section class="py-12 bg-white dark:bg-[#0D1D22] border-b border-seafoam/30 dark:border-seafoam/10">
+    <div class="container mx-auto px-6">
+        <div class="bg-gradient-to-br from-[#0B252C] to-[#004B63] p-8 md:p-12 rounded-3xl text-white shadow-xl">
+            <div class="max-w-3xl mb-8">
+                <span class="bg-reef-gold/20 text-reef-gold px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest border border-reef-gold/30 uppercase">Interactive Equipment Tool</span>
+                <h3 class="text-3xl md:text-4xl font-heading font-bold text-white mt-3">Smart Tank Setup & Equipment Calculator</h3>
+                <p class="text-sand-beige text-base mt-2">Select your target aquarium volume to instantly calculate essential filtration flow rate, heater wattage, and substrate requirements.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8 items-center">
+                <!-- Controls -->
+                <div class="lg:col-span-5 bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20">
+                    <label for="tank-size-select" class="block text-sm font-semibold text-sand-beige mb-3 uppercase tracking-wider">Select Tank Size (Gallons):</label>
+                    <select id="tank-size-select" class="w-full bg-[#091D23] text-white border border-reef-gold/40 rounded-xl px-4 py-3 text-lg font-semibold focus:outline-none focus:border-reef-gold cursor-pointer" onchange="calculateEquipment()">
+                        <option value="10">10 Gallons (Nano Community / Shrimp)</option>
+                        <option value="20">20 Gallons High / Long (Standard Beginner)</option>
+                        <option value="29">29 Gallons (Medium Community)</option>
+                        <option value="55" selected>55 Gallons (Classic Cichlid / Planted)</option>
+                        <option value="75">75 Gallons (Large Aquascape)</option>
+                        <option value="120">120 Gallons (Monster / Marine Reef)</option>
+                    </select>
+
+                    <div class="mt-6 flex flex-col gap-3 text-xs text-sand-beige/80">
+                        <div class="flex items-center gap-2"><i class="fas fa-info-circle text-reef-gold"></i> <span>Calculations based on 4x-6x hourly water turn-over standard.</span></div>
+                        <div class="flex items-center gap-2"><i class="fas fa-check-circle text-reef-gold"></i> <span>Recommends 1 to 1.5 lbs of substrate per gallon for 2-inch depth.</span></div>
+                    </div>
+                </div>
+
+                <!-- Live Results -->
+                <div class="lg:col-span-7 grid sm:grid-cols-2 gap-4">
+                    <div class="bg-white/10 backdrop-blur-md p-5 rounded-2xl border border-white/20">
+                        <div class="text-xs text-sand-beige uppercase tracking-wider font-semibold mb-1">Filter Turn-Over</div>
+                        <div id="calc-gph" class="text-3xl font-sans-num font-bold text-reef-gold tracking-tight">220 – 330 GPH</div>
+                        <div class="text-xs text-white/70 mt-1">Recommended for canister or HOB filter</div>
+                    </div>
+
+                    <div class="bg-white/10 backdrop-blur-md p-5 rounded-2xl border border-white/20">
+                        <div class="text-xs text-sand-beige uppercase tracking-wider font-semibold mb-1">Heater Wattage</div>
+                        <div id="calc-heater" class="text-3xl font-sans-num font-bold text-reef-gold tracking-tight">200 – 250 Watts</div>
+                        <div class="text-xs text-white/70 mt-1">Submersible quartz heater</div>
+                    </div>
+
+                    <div class="bg-white/10 backdrop-blur-md p-5 rounded-2xl border border-white/20">
+                        <div class="text-xs text-sand-beige uppercase tracking-wider font-semibold mb-1">Substrate Weight</div>
+                        <div id="calc-substrate" class="text-3xl font-sans-num font-bold text-reef-gold tracking-tight">55 – 70 lbs</div>
+                        <div class="text-xs text-white/70 mt-1">Aquasoil or inert gravel target</div>
+                    </div>
+
+                    <div class="bg-white/10 backdrop-blur-md p-5 rounded-2xl border border-white/20">
+                        <div class="text-xs text-sand-beige uppercase tracking-wider font-semibold mb-1">Lighting Target</div>
+                        <div id="calc-light" class="text-3xl font-sans-num font-bold text-reef-gold tracking-tight">45 – 75 Watts</div>
+                        <div class="text-xs text-white/70 mt-1">Full spectrum LED WRGB fixture</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+function calculateEquipment() {
+    const size = parseInt(document.getElementById('tank-size-select').value);
+    const minGPH = size * 4;
+    const maxGPH = size * 6;
+    const minHeat = size * 3.5;
+    const maxHeat = size * 5;
+    const minSub = size * 1.0;
+    const maxSub = size * 1.3;
+    const minWatt = Math.round(size * 0.8);
+    const maxWatt = Math.round(size * 1.4);
+
+    document.getElementById('calc-gph').innerText = `${minGPH} – ${maxGPH} GPH`;
+    document.getElementById('calc-heater').innerText = `${Math.round(minHeat)} – ${Math.round(maxHeat)} Watts`;
+    document.getElementById('calc-substrate').innerText = `${Math.round(minSub)} – ${Math.round(maxSub)} lbs`;
+    document.getElementById('calc-light').innerText = `${minWatt} – ${maxWatt} Watts`;
+}
+</script>
+
 <!-- ========== TANKS ========== -->
 <section id="tanks" class="py-20 bg-[#F4F8FA] dark:bg-[#0B1A1E] scroll-mt-24">
     <div class="container mx-auto px-6">
@@ -782,6 +862,75 @@
                         <span class="text-lg text-ocean-blue dark:text-reef-gold font-bold">$7.99</span>
                         <button class="w-full bg-[#006A8A] hover:bg-[#004B63] dark:bg-[#7FC1C9] dark:hover:bg-white dark:text-[#0B1A1E] text-white py-2.5 px-4 rounded-full text-sm font-semibold transition duration-300 flex items-center justify-center gap-2 shadow-sm"><i class="fas fa-shopping-bag text-xs"></i> Buy Now</button>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== FILTRATION SYSTEM COMPARISON MATRIX ========== -->
+<section class="py-20 bg-[#EAF5F7] dark:bg-[#0E1E24] border-t border-seafoam/30">
+    <div class="container mx-auto px-6">
+        <div class="text-center max-w-3xl mx-auto mb-14">
+            <span class="text-ocean-blue dark:text-reef-gold text-sm font-semibold tracking-widest uppercase">Buyers' Guide</span>
+            <h2 class="text-3xl md:text-5xl font-heading font-semibold text-deep-teal dark:text-white mt-2">Filtration System Comparison</h2>
+            <p class="text-base md:text-lg text-deep-teal/80 dark:text-sand-beige/90 mt-3">Compare filter types to choose the ideal mechanical, chemical, and biological filtration for your tank size.</p>
+        </div>
+
+        <div class="grid lg:grid-cols-4 gap-6">
+            <div class="bg-white dark:bg-[#13262B] p-6 rounded-3xl border border-seafoam/30 dark:border-seafoam/10 flex flex-col justify-between">
+                <div>
+                    <span class="bg-ocean-blue/10 text-ocean-blue dark:bg-reef-gold/20 dark:text-reef-gold text-xs font-bold px-3 py-1 rounded-full uppercase">Canister Filters</span>
+                    <h3 class="text-xl font-heading font-semibold text-deep-teal dark:text-white mt-3 mb-2">External Canister</h3>
+                    <p class="text-xs text-deep-teal/70 dark:text-sand-beige/80 mb-4">High bio-capacity media trays tucked neatly under cabinet tanks.</p>
+                    <ul class="text-xs space-y-2 text-deep-teal/80 dark:text-sand-beige/80 border-t border-seafoam/20 pt-4 font-sans-num">
+                        <li><strong>Flow Rate:</strong> 150 – 500+ GPH</li>
+                        <li><strong>Noise Level:</strong> Ultra Silent (< 25dB)</li>
+                        <li><strong>Ideal Tank:</strong> 30 to 150+ Gallons</li>
+                        <li><strong>Maintenance:</strong> Clean every 2-3 months</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-[#13262B] p-6 rounded-3xl border border-seafoam/30 dark:border-seafoam/10 flex flex-col justify-between">
+                <div>
+                    <span class="bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 text-xs font-bold px-3 py-1 rounded-full uppercase">Hang-On-Back (HOB)</span>
+                    <h3 class="text-xl font-heading font-semibold text-deep-teal dark:text-white mt-3 mb-2">Power Filter</h3>
+                    <p class="text-xs text-deep-teal/70 dark:text-sand-beige/80 mb-4">Easy access cartridge slot with surface skimmer attachment options.</p>
+                    <ul class="text-xs space-y-2 text-deep-teal/80 dark:text-sand-beige/80 border-t border-seafoam/20 pt-4 font-sans-num">
+                        <li><strong>Flow Rate:</strong> 50 – 350 GPH</li>
+                        <li><strong>Noise Level:</strong> Low Gentle Waterfall</li>
+                        <li><strong>Ideal Tank:</strong> 5 to 55 Gallons</li>
+                        <li><strong>Maintenance:</strong> Rinse cartridge bi-weekly</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-[#13262B] p-6 rounded-3xl border border-seafoam/30 dark:border-seafoam/10 flex flex-col justify-between">
+                <div>
+                    <span class="bg-amber-500/10 text-amber-800 dark:text-amber-300 text-xs font-bold px-3 py-1 rounded-full uppercase">Sponge Filters</span>
+                    <h3 class="text-xl font-heading font-semibold text-deep-teal dark:text-white mt-3 mb-2">Air Driven Sponge</h3>
+                    <p class="text-xs text-deep-teal/70 dark:text-sand-beige/80 mb-4">Zero suction risk — ideal for shrimp colonies, fry, and hospital tanks.</p>
+                    <ul class="text-xs space-y-2 text-deep-teal/80 dark:text-sand-beige/80 border-t border-seafoam/20 pt-4 font-sans-num">
+                        <li><strong>Flow Rate:</strong> Air pump dependant</li>
+                        <li><strong>Noise Level:</strong> Air Bubbles</li>
+                        <li><strong>Ideal Tank:</strong> 2 to 40 Gallons</li>
+                        <li><strong>Maintenance:</strong> Squeeze in old tank water monthly</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-[#13262B] p-6 rounded-3xl border border-seafoam/30 dark:border-seafoam/10 flex flex-col justify-between">
+                <div>
+                    <span class="bg-purple-500/10 text-purple-700 dark:text-purple-300 text-xs font-bold px-3 py-1 rounded-full uppercase">Sump Systems</span>
+                    <h3 class="text-xl font-heading font-semibold text-deep-teal dark:text-white mt-3 mb-2">Under-Tank Sump</h3>
+                    <p class="text-xs text-deep-teal/70 dark:text-sand-beige/80 mb-4">Maximum water volume & hidden equipment space for protein skimmers.</p>
+                    <ul class="text-xs space-y-2 text-deep-teal/80 dark:text-sand-beige/80 border-t border-seafoam/20 pt-4 font-sans-num">
+                        <li><strong>Flow Rate:</strong> 500 – 2000+ GPH</li>
+                        <li><strong>Noise Level:</strong> Silent Overflow</li>
+                        <li><strong>Ideal Tank:</strong> 75 to 300+ Gallons</li>
+                        <li><strong>Maintenance:</strong> Swap filter socks weekly</li>
+                    </ul>
                 </div>
             </div>
         </div>

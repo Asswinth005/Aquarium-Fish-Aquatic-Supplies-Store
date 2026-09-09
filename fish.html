@@ -70,6 +70,7 @@
         p { line-height: 1.7; font-size: 1rem; font-weight: 450; letter-spacing: 0.01em; }
         h1, h2, h3, h4, .heading-font, .font-heading { font-family: 'Playfair Display', serif; font-weight: 600; }
         .serif-text { font-family: 'Cormorant Garamond', serif; }
+        .font-sans-num, .font-number, .number-font { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important; font-variant-numeric: lining-nums tabular-nums !important; }
 
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #D4E9ED; }
@@ -454,6 +455,74 @@
     </div>
 </section>
 
+<!-- ========== INTERACTIVE SPECIES FILTER & PARAMETERS MATRIX ========== -->
+<section class="py-12 bg-white dark:bg-[#0D1D22] border-b border-seafoam/30 dark:border-seafoam/10">
+    <div class="container mx-auto px-6">
+        <div class="bg-[#F4F8FA] dark:bg-[#13262B] p-6 md:p-8 rounded-3xl border border-seafoam/30 dark:border-seafoam/10 shadow-sm">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+                <div>
+                    <span class="text-ocean-blue dark:text-reef-gold text-xs font-semibold tracking-widest uppercase">Aquatic Environment Guide</span>
+                    <h3 class="text-2xl md:text-3xl font-heading font-semibold text-deep-teal dark:text-white mt-1">Water Parameter Reference Matrix</h3>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20 text-xs font-semibold px-3 py-1.5 rounded-full"><i class="fas fa-[#006A8A] fa-check-circle mr-1"></i> Live Arrival Guarantee</span>
+                    <span class="bg-blue-500/10 text-blue-700 dark:text-blue-400 border border-blue-500/20 text-xs font-semibold px-3 py-1.5 rounded-full"><i class="fas fa-shield-alt mr-1"></i> 14-Day Quarantine Passed</span>
+                </div>
+            </div>
+
+            <!-- Parameter Matrix Table -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm text-deep-teal dark:text-sand-beige">
+                    <thead class="bg-ocean-blue/10 dark:bg-deep-teal/50 text-deep-teal dark:text-white font-heading font-semibold uppercase text-xs">
+                        <tr>
+                            <th class="py-3.5 px-4 rounded-l-xl">Species Family</th>
+                            <th class="py-3.5 px-4">Ideal Temp (°F)</th>
+                            <th class="py-3.5 px-4">pH Range</th>
+                            <th class="py-3.5 px-4">Hardness (dGH)</th>
+                            <th class="py-3.5 px-4">Min Tank Size</th>
+                            <th class="py-3.5 px-4 rounded-r-xl">Temperament</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-seafoam/20 dark:divide-seafoam/10">
+                        <tr class="hover:bg-white/60 dark:hover:bg-white/5 transition">
+                            <td class="py-4 px-4 font-semibold text-ocean-blue dark:text-reef-gold flex items-center gap-2"><i class="fas fa-[#006A8A] fa-fish text-xs"></i> Community Freshwater (Tetras, Corys)</td>
+                            <td class="py-4 px-4">72°F – 78°F</td>
+                            <td class="py-4 px-4">6.5 – 7.5</td>
+                            <td class="py-4 px-4">4 – 10 dGH</td>
+                            <td class="py-4 px-4 font-medium">10 Gallons</td>
+                            <td class="py-4 px-4"><span class="bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 text-xs px-2.5 py-1 rounded-full font-medium">Peaceful</span></td>
+                        </tr>
+                        <tr class="hover:bg-white/60 dark:hover:bg-white/5 transition">
+                            <td class="py-4 px-4 font-semibold text-ocean-blue dark:text-reef-gold flex items-center gap-2"><i class="fas fa-[#006A8A] fa-fish text-xs"></i> South American Cichlids (Discus, Angels)</td>
+                            <td class="py-4 px-4">80°F – 86°F</td>
+                            <td class="py-4 px-4">6.0 – 6.8</td>
+                            <td class="py-4 px-4">3 – 8 dGH</td>
+                            <td class="py-4 px-4 font-medium">55 Gallons</td>
+                            <td class="py-4 px-4"><span class="bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300 text-xs px-2.5 py-1 rounded-full font-medium">Semi-Aggressive</span></td>
+                        </tr>
+                        <tr class="hover:bg-white/60 dark:hover:bg-white/5 transition">
+                            <td class="py-4 px-4 font-semibold text-ocean-blue dark:text-reef-gold flex items-center gap-2"><i class="fas fa-[#006A8A] fa-water text-xs"></i> Marine Reef Fish (Clownfish, Tangs)</td>
+                            <td class="py-4 px-4">75°F – 80°F</td>
+                            <td class="py-4 px-4">8.1 – 8.4</td>
+                            <td class="py-4 px-4">8 – 12 dKH</td>
+                            <td class="py-4 px-4 font-medium">30 Gallons</td>
+                            <td class="py-4 px-4"><span class="bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300 text-xs px-2.5 py-1 rounded-full font-medium">Reef Safe</span></td>
+                        </tr>
+                        <tr class="hover:bg-white/60 dark:hover:bg-white/5 transition">
+                            <td class="py-4 px-4 font-semibold text-ocean-blue dark:text-reef-gold flex items-center gap-2"><i class="fas fa-[#006A8A] fa-seedling text-xs"></i> Nano Planted Tank (Guppies, Rasboras)</td>
+                            <td class="py-4 px-4">70°F – 76°F</td>
+                            <td class="py-4 px-4">6.2 – 7.2</td>
+                            <td class="py-4 px-4">2 – 8 dGH</td>
+                            <td class="py-4 px-4 font-medium">5 Gallons</td>
+                            <td class="py-4 px-4"><span class="bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 text-xs px-2.5 py-1 rounded-full font-medium">Peaceful</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- ========== FRESHWATER SECTION ========== -->
 <section id="freshwater" class="py-20 bg-[#F4F8FA] dark:bg-[#0B1A1E] scroll-mt-24">
     <div class="container mx-auto px-6">
@@ -698,6 +767,40 @@
                         <button class="w-full bg-[#006A8A] hover:bg-[#004B63] dark:bg-[#7FC1C9] dark:hover:bg-white dark:text-[#0B1A1E] text-white py-2.5 px-4 rounded-full text-sm font-semibold transition duration-300 flex items-center justify-center gap-2 shadow-sm"><i class="fas fa-shopping-bag text-xs"></i> Buy Now</button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== ACCLIMATION & QUARANTINE PROTOCOL ========== -->
+<section class="py-20 bg-[#EAF5F7] dark:bg-[#0E1E24] border-t border-seafoam/30 dark:border-seafoam/10">
+    <div class="container mx-auto px-6">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="text-ocean-blue dark:text-reef-gold text-sm font-semibold tracking-widest uppercase">Expert Livestock Care</span>
+            <h2 class="text-3xl md:text-5xl font-heading font-semibold text-deep-teal dark:text-white mt-2">4-Step Live Fish Acclimation Protocol</h2>
+            <p class="text-lg text-deep-teal/80 dark:text-sand-beige/90 mt-4">Follow our proven step-by-step procedure to ensure zero stress and optimal health when introducing new fish to your tank.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="bg-white dark:bg-[#13262B] p-8 rounded-3xl border border-seafoam/30 dark:border-seafoam/10 relative">
+                <span class="w-10 h-10 rounded-full bg-ocean-blue text-white dark:bg-reef-gold dark:text-[#0B1A1E] font-bold flex items-center justify-center text-lg mb-6 shadow-md">1</span>
+                <h3 class="text-xl font-heading font-semibold text-deep-teal dark:text-white mb-2">Temperature Float</h3>
+                <p class="text-sm text-deep-teal/70 dark:text-sand-beige/80 leading-relaxed">Float the sealed bag in your aquarium for 15-20 minutes to equalize water temperature gradually.</p>
+            </div>
+            <div class="bg-white dark:bg-[#13262B] p-8 rounded-3xl border border-seafoam/30 dark:border-seafoam/10 relative">
+                <span class="w-10 h-10 rounded-full bg-ocean-blue text-white dark:bg-reef-gold dark:text-[#0B1A1E] font-bold flex items-center justify-center text-lg mb-6 shadow-md">2</span>
+                <h3 class="text-xl font-heading font-semibold text-deep-teal dark:text-white mb-2">Drip Acclimation</h3>
+                <p class="text-sm text-deep-teal/70 dark:text-sand-beige/80 leading-relaxed">Add 1/2 cup of tank water every 5 minutes for 45 minutes to adjust pH and water hardness smoothly.</p>
+            </div>
+            <div class="bg-white dark:bg-[#13262B] p-8 rounded-3xl border border-seafoam/30 dark:border-seafoam/10 relative">
+                <span class="w-10 h-10 rounded-full bg-ocean-blue text-white dark:bg-reef-gold dark:text-[#0B1A1E] font-bold flex items-center justify-center text-lg mb-6 shadow-md">3</span>
+                <h3 class="text-xl font-heading font-semibold text-deep-teal dark:text-white mb-2">Net Transfer Only</h3>
+                <p class="text-sm text-deep-teal/70 dark:text-sand-beige/80 leading-relaxed">Gently net the fish into the tank. Never pour shipping bag water into your display tank.</p>
+            </div>
+            <div class="bg-white dark:bg-[#13262B] p-8 rounded-3xl border border-seafoam/30 dark:border-seafoam/10 relative">
+                <span class="w-10 h-10 rounded-full bg-ocean-blue text-white dark:bg-reef-gold dark:text-[#0B1A1E] font-bold flex items-center justify-center text-lg mb-6 shadow-md">4</span>
+                <h3 class="text-xl font-heading font-semibold text-deep-teal dark:text-white mb-2">Dim Lights & Observe</h3>
+                <p class="text-sm text-deep-teal/70 dark:text-sand-beige/80 leading-relaxed">Keep aquarium lights off for 4 hours post-release to minimize stress and prevent aggression.</p>
             </div>
         </div>
     </div>

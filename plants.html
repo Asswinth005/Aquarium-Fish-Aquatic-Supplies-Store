@@ -75,6 +75,7 @@
         p { line-height: 1.7; font-size: 1rem; font-weight: 450; letter-spacing: 0.01em; }
         h1, h2, h3, h4, .heading-font, .font-heading { font-family: 'Playfair Display', serif; font-weight: 600; }
         .serif-text { font-family: 'Cormorant Garamond', serif; }
+        .font-sans-num, .font-number, .number-font { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important; font-variant-numeric: lining-nums tabular-nums !important; }
 
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #D4E9ED; }
@@ -462,6 +463,58 @@
     </div>
 </section>
 
+<!-- ========== LOW-TECH VS HIGH-TECH MATRIX ========== -->
+<section class="py-12 bg-white dark:bg-[#0D1D22] border-b border-seafoam/30 dark:border-seafoam/10">
+    <div class="container mx-auto px-6">
+        <div class="bg-[#F4F8FA] dark:bg-[#13262B] p-6 md:p-8 rounded-3xl border border-seafoam/30 dark:border-seafoam/10 shadow-sm mb-12">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+                <div>
+                    <span class="text-emerald-600 dark:text-reef-gold text-xs font-semibold tracking-widest uppercase">Aquascapers' Choice Guide</span>
+                    <h3 class="text-2xl md:text-3xl font-heading font-semibold text-deep-teal dark:text-white mt-1">Low-Tech vs. High-Tech Plant Matrix</h3>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20 text-xs font-semibold px-3 py-1.5 rounded-full"><i class="fas fa-[#006A8A] fa-check-circle mr-1"></i> Snail-Free Guarantee</span>
+                    <span class="bg-blue-500/10 text-blue-700 dark:text-blue-400 border border-blue-500/20 text-xs font-semibold px-3 py-1.5 rounded-full"><i class="fas fa-flask mr-1"></i> Tissue Culture Tissue Cups</span>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Low Tech Box -->
+                <div class="bg-white dark:bg-[#0E1E24] p-6 rounded-2xl border border-emerald-500/20 shadow-sm">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 flex items-center justify-center text-lg"><i class="fas fa-leaf"></i></div>
+                        <div>
+                            <h4 class="text-lg font-heading font-semibold text-deep-teal dark:text-white">Low-Tech Setup (Beginner Friendly)</h4>
+                            <p class="text-xs text-deep-teal/70 dark:text-sand-beige/70">No CO2 injection needed • Low to medium lighting</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-2 text-sm text-deep-teal/80 dark:text-sand-beige/80">
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-1 text-xs"></i> <span><strong>Best Species:</strong> Anubias, Java Fern, Cryptocoryne, Bucephalandra</span></li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-1 text-xs"></i> <span><strong>Lighting:</strong> 15 – 30 PAR (Standard LED hood)</span></li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-1 text-xs"></i> <span><strong>Fertilization:</strong> Liquid all-in-one dose 1x weekly</span></li>
+                    </ul>
+                </div>
+
+                <!-- High Tech Box -->
+                <div class="bg-white dark:bg-[#0E1E24] p-6 rounded-2xl border border-blue-500/20 shadow-sm">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 flex items-center justify-center text-lg"><i class="fas fa-bolt"></i></div>
+                        <div>
+                            <h4 class="text-lg font-heading font-semibold text-deep-teal dark:text-white">High-Tech Setup (Pro Aquascaper)</h4>
+                            <p class="text-xs text-deep-teal/70 dark:text-sand-beige/70">Pressurized CO2 (20-30ppm) • High RGB lighting</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-2 text-sm text-deep-teal/80 dark:text-sand-beige/80">
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-1 text-xs"></i> <span><strong>Best Species:</strong> Monte Carlo, Dwarf Hairgrass, Rotala Indica, Ludwigia</span></li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-1 text-xs"></i> <span><strong>Lighting:</strong> 50 – 100+ PAR (Full spectrum WRGB light)</span></li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-1 text-xs"></i> <span><strong>Fertilization:</strong> Daily NPK + Micro dosing + Aquasoil</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- ========== FOREGROUND PLANTS ========== -->
 <section id="foreground" class="py-20 bg-[#F4F8FA] dark:bg-[#0B1A1E] scroll-mt-24">
     <div class="container mx-auto px-6">
@@ -711,28 +764,38 @@
     </div>
 </section>
 
-<!-- ========== PLANT CARE TIPS ========== -->
+<!-- ========== PLANT CARE & PROPAGATION GUIDE ========== -->
 <section class="py-20 bg-[#EAF5F7] dark:bg-[#0E1E24] border-y border-seafoam/30">
     <div class="container mx-auto px-6">
-        <div class="text-center mb-14">
-            <span class="text-ocean-blue dark:text-reef-gold text-sm font-semibold tracking-[0.2em] uppercase">plant health</span>
-            <h2 class="text-4xl font-heading font-semibold mt-2 text-deep-teal dark:text-white">Care <span class="text-ocean-blue dark:text-reef-gold">Essentials</span></h2>
+        <div class="text-center max-w-3xl mx-auto mb-14">
+            <span class="text-ocean-blue dark:text-reef-gold text-sm font-semibold tracking-[0.2em] uppercase">Aquatic Horticulture</span>
+            <h2 class="text-3xl md:text-5xl font-heading font-semibold mt-2 text-deep-teal dark:text-white">Plant Care & Propagation Masterclass</h2>
+            <p class="text-base md:text-lg text-deep-teal/80 dark:text-sand-beige/80 mt-3">Learn how to trim, propagate, and maintain peak growth without algae issues.</p>
         </div>
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="bg-white dark:bg-[#13262B] p-8 rounded-3xl shadow-sm border border-seafoam/20 text-center">
-                <div class="w-16 h-16 bg-ocean-blue/10 dark:bg-reef-gold/10 rounded-2xl flex items-center justify-center mx-auto mb-5 text-2xl text-ocean-blue dark:text-reef-gold"><i class="fas fa-sun"></i></div>
-                <h3 class="text-xl font-heading font-semibold dark:text-white">Lighting</h3>
-                <p class="text-sm text-deep-teal/70 dark:text-sand-beige/80 mt-2">Full-spectrum LED with 8-10 hrs daily for optimal growth.</p>
+        <div class="grid md:grid-cols-3 gap-8 mb-12">
+            <div class="bg-white dark:bg-[#13262B] p-8 rounded-3xl shadow-sm border border-seafoam/20 text-center flex flex-col justify-between">
+                <div>
+                    <div class="w-16 h-16 bg-emerald-100 dark:bg-emerald-900/40 rounded-2xl flex items-center justify-center mx-auto mb-5 text-2xl text-emerald-700 dark:text-emerald-300"><i class="fas fa-sun"></i></div>
+                    <h3 class="text-xl font-heading font-semibold dark:text-white">Photoperiod & Light PAR</h3>
+                    <p class="text-sm text-deep-teal/70 dark:text-sand-beige/80 mt-3">Run full-spectrum LEDs for 7-8 hours maximum with a timer. Excess lighting without nutrients causes green dust algae.</p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-seafoam/20 dark:border-seafoam/10 text-xs font-semibold text-emerald-700 dark:text-reef-gold uppercase tracking-wider">Target: 30-80 PAR</div>
             </div>
-            <div class="bg-white dark:bg-[#13262B] p-8 rounded-3xl shadow-sm border border-seafoam/20 text-center">
-                <div class="w-16 h-16 bg-ocean-blue/10 dark:bg-reef-gold/10 rounded-2xl flex items-center justify-center mx-auto mb-5 text-2xl text-ocean-blue dark:text-reef-gold"><i class="fas fa-flask"></i></div>
-                <h3 class="text-xl font-heading font-semibold dark:text-white">CO₂ & Fertilizer</h3>
-                <p class="text-sm text-deep-teal/70 dark:text-sand-beige/80 mt-2">Balanced liquid fertilizers and CO₂ injection for lush growth.</p>
+            <div class="bg-white dark:bg-[#13262B] p-8 rounded-3xl shadow-sm border border-seafoam/20 text-center flex flex-col justify-between">
+                <div>
+                    <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900/40 rounded-2xl flex items-center justify-center mx-auto mb-5 text-2xl text-blue-700 dark:text-blue-300"><i class="fas fa-flask"></i></div>
+                    <h3 class="text-xl font-heading font-semibold dark:text-white">Micro & Macro Dosing</h3>
+                    <p class="text-sm text-deep-teal/70 dark:text-sand-beige/80 mt-3">Stem plants feed via water column (Liquid NPK), while heavy root feeders (Amazon Swords, Crypts) require substrate Root Tabs every 3 months.</p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-seafoam/20 dark:border-seafoam/10 text-xs font-semibold text-blue-700 dark:text-reef-gold uppercase tracking-wider">Target: 15-25 ppm NO3</div>
             </div>
-            <div class="bg-white dark:bg-[#13262B] p-8 rounded-3xl shadow-sm border border-seafoam/20 text-center">
-                <div class="w-16 h-16 bg-ocean-blue/10 dark:bg-reef-gold/10 rounded-2xl flex items-center justify-center mx-auto mb-5 text-2xl text-ocean-blue dark:text-reef-gold"><i class="fas fa-cut"></i></div>
-                <h3 class="text-xl font-heading font-semibold dark:text-white">Pruning</h3>
-                <p class="text-sm text-deep-teal/70 dark:text-sand-beige/80 mt-2">Regular trimming encourages dense growth and prevents shading.</p>
+            <div class="bg-white dark:bg-[#13262B] p-8 rounded-3xl shadow-sm border border-seafoam/20 text-center flex flex-col justify-between">
+                <div>
+                    <div class="w-16 h-16 bg-purple-100 dark:bg-purple-900/40 rounded-2xl flex items-center justify-center mx-auto mb-5 text-2xl text-purple-700 dark:text-purple-300"><i class="fas fa-cut"></i></div>
+                    <h3 class="text-xl font-heading font-semibold dark:text-white">Trimming & Re-Planting</h3>
+                    <p class="text-sm text-deep-teal/70 dark:text-sand-beige/80 mt-3">Cut stem plants at node joints with curved aquascaping scissors. Re-insert the top cuttings into aquasoil to double your plant density!</p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-seafoam/20 dark:border-seafoam/10 text-xs font-semibold text-purple-700 dark:text-reef-gold uppercase tracking-wider">Technique: Stem Propagation</div>
             </div>
         </div>
     </div>

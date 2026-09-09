@@ -75,6 +75,7 @@
         p { line-height: 1.7; font-size: 1rem; font-weight: 450; letter-spacing: 0.01em; }
         h1, h2, h3, h4, .heading-font, .font-heading { font-family: 'Playfair Display', serif; font-weight: 600; }
         .serif-text { font-family: 'Cormorant Garamond', serif; }
+        .font-sans-num, .font-number, .number-font { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important; font-variant-numeric: lining-nums tabular-nums !important; }
 
         /* Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
@@ -449,9 +450,9 @@
             <button class="btn-outline-light px-10 py-4 text-lg rounded-full font-medium"><i class="fas fa-fish mr-2"></i> Rare Species</button>
         </div>
         <div class="mt-16 flex flex-wrap justify-center gap-10 text-sand-beige/80 text-lg font-light">
-            <span><i class="fas fa-certificate text-reef-gold mr-2"></i> 300+ species</span>
+            <span><i class="fas fa-certificate text-reef-gold mr-2"></i> <span class="font-sans-num font-bold">300+</span> species</span>
             <span><i class="fas fa-ship text-reef-gold mr-2"></i> direct import</span>
-            <span><i class="fas fa-heart text-reef-gold mr-2"></i> 98% survival rate</span>
+            <span><i class="fas fa-heart text-reef-gold mr-2"></i> <span class="font-sans-num font-bold">98%</span> survival rate</span>
         </div>
     </div>
 </section>
@@ -478,6 +479,41 @@
                 <div class="w-20 h-20 bg-ocean-blue/10 dark:bg-reef-gold/10 rounded-3xl flex items-center justify-center mx-auto mb-6 text-3xl text-ocean-blue dark:text-reef-gold"><i class="fas fa-truck"></i></div>
                 <h3 class="text-2xl font-heading font-semibold mb-3 dark:text-white">Live Delivery</h3>
                 <p class="text-base text-deep-teal/80 dark:text-sand-beige/80">Climate-controlled shipping with 100% live arrival guarantee.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== WHITE-GLOVE CUSTOM AQUASCAPE SERVICES ========== -->
+<section class="py-20 bg-white dark:bg-[#0D1D22] border-y border-seafoam/30 dark:border-seafoam/10">
+    <div class="container mx-auto px-6">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <span class="bg-reef-gold/20 text-reef-gold px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest border border-reef-gold/30 uppercase">Bespoke Living Art</span>
+                <h2 class="text-3xl md:text-5xl font-heading font-bold text-deep-teal dark:text-white mt-3 leading-tight">Custom Rimless Tank Design & White-Glove Setup</h2>
+                <p class="text-deep-teal/80 dark:text-sand-beige/90 text-base md:text-lg mt-4 leading-relaxed">
+                    Transform your residence or executive office with a bespoke aquascape. From initial CAD 3D layout to imported hardscape assembly, custom plumbing, and ongoing maintenance.
+                </p>
+                <div class="grid sm:grid-cols-2 gap-6 mt-8">
+                    <div class="bg-[#F4F8FA] dark:bg-[#13262B] p-5 rounded-2xl border border-seafoam/20">
+                        <div class="w-10 h-10 rounded-xl bg-ocean-blue/10 dark:bg-reef-gold/10 text-ocean-blue dark:text-reef-gold flex items-center justify-center font-bold text-lg mb-3"><i class="fas fa-drafting-compass"></i></div>
+                        <h4 class="font-heading font-semibold text-deep-teal dark:text-white">Custom Rimless Glass</h4>
+                        <p class="text-xs text-deep-teal/70 dark:text-sand-beige/70 mt-1">Starphire ultra-clear low-iron glass with polished mitered edges.</p>
+                    </div>
+                    <div class="bg-[#F4F8FA] dark:bg-[#13262B] p-5 rounded-2xl border border-seafoam/20">
+                        <div class="w-10 h-10 rounded-xl bg-ocean-blue/10 dark:bg-reef-gold/10 text-ocean-blue dark:text-reef-gold flex items-center justify-center font-bold text-lg mb-3"><i class="fas fa-hands-helping"></i></div>
+                        <h4 class="font-heading font-semibold text-deep-teal dark:text-white">Bi-Weekly Maintenance</h4>
+                        <p class="text-xs text-deep-teal/70 dark:text-sand-beige/70 mt-1">Full white-glove water testing, plant pruning, and glass polishing.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="bg-gradient-to-br from-[#0B252C] to-[#004B63] p-8 md:p-10 rounded-3xl text-white shadow-2xl relative overflow-hidden">
+                    <span class="text-xs font-bold text-reef-gold uppercase tracking-wider block mb-2">Book Your Consultation</span>
+                    <h3 class="text-2xl font-heading font-bold text-white mb-4">Request a Private Aquascape Design Consultation</h3>
+                    <p class="text-sm text-sand-beige/90 mb-6">Our master aquascapers will visit your space, measure lighting & weight constraints, and present custom 3D hardscape concepts.</p>
+                    <a href="contact.html" class="inline-block bg-reef-gold text-deep-teal font-semibold px-8 py-3.5 rounded-full hover:bg-white transition text-sm shadow-lg"><i class="fas fa-calendar-check mr-2"></i> Schedule Design Visit</a>
+                </div>
             </div>
         </div>
     </div>
